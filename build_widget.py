@@ -28,7 +28,6 @@ CHANNEL_MAP = {
     'Sky Sport 1':       ('Sky Sport Uno',    'b-sky',        'sky'),
     'Sky Sport 2':       ('Sky Sport 2',      'b-sky',        'sky'),
     'Sky Sport 3':       ('Sky Sport 3',      'b-sky',        'sky'),
-    'Sky Sport 4K':      ('Sky Sport 4K',     'b-sky',        'sky'),
     'Sky':               ('Sky',              'b-sky',        'sky'),
     'Sky Sport Calcio':  ('Sky Sport Calcio', 'b-sky-calcio', 'sky'),
     'NOW':               ('NOW',             'b-now',         'now'),
