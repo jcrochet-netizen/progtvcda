@@ -351,4 +351,22 @@ html_out = f'''<div class="ptv-w">
 
 with open('widget-prog-tv.html', 'w') as f:
     f.write(html_out)
+
+# Standalone page for GitHub Pages preview
+index_html = f'''<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Programma TV Calcio</title>
+<style>body{{margin:0;padding:24px 16px;background:#f1f5f9;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}}</style>
+</head>
+<body>
+{html_out}
+</body>
+</html>
+'''
+with open('index.html', 'w') as f:
+    f.write(index_html)
+
 print(f"Generated widget with {len(MATCHES)} matches over {len(DAYS)} days")
