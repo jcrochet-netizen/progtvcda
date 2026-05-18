@@ -1,0 +1,301 @@
+<div class="ptv-w">
+<style>
+.ptv-w{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:820px;margin:0 auto;color:#1a1a1a;background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.ptv-w *{box-sizing:border-box}
+.ptv-w .ptv-rd,.ptv-w .ptv-rc{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.ptv-w .ptv-tabs{display:flex;flex-wrap:wrap;gap:0;background:#f8fafc;border-bottom:1px solid #e5e7eb;padding:8px 8px 0}
+.ptv-w .ptv-tabs label{flex:1 1 auto;min-width:80px;text-align:center;padding:10px 8px;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-radius:8px 8px 0 0;border:1px solid transparent;border-bottom:none;transition:background .15s,color .15s;line-height:1.3}
+.ptv-w .ptv-tabs label small{display:block;font-size:11px;font-weight:500;opacity:.75;margin-top:2px}
+.ptv-w .ptv-tabs label:hover{background:#eef2f7;color:#0f172a}
+.ptv-w .ptv-filt{display:flex;flex-wrap:wrap;gap:6px;padding:12px;background:#fff;border-bottom:1px solid #f1f5f9}
+.ptv-w .ptv-filt label{padding:6px 12px;border:1px solid #e2e8f0;border-radius:999px;cursor:pointer;font-size:12px;font-weight:500;color:#475569;background:#fff;transition:all .15s}
+.ptv-w .ptv-filt label:hover{border-color:#94a3b8;color:#0f172a}
+.ptv-w .ptv-body{padding:0;max-height:560px;overflow-y:auto}
+.ptv-w .ptv-row{display:none;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #f1f5f9}
+.ptv-w .ptv-row:last-child{border-bottom:none}
+.ptv-w .ptv-row:hover{background:#fafbfc}
+.ptv-w .ptv-time{flex:0 0 60px;font-size:16px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums}
+.ptv-w .ptv-match{flex:1 1 auto;min-width:0}
+.ptv-w .ptv-match-name{font-size:14px;font-weight:600;color:#0f172a;line-height:1.3;display:block}
+.ptv-w .ptv-comp{display:block;font-size:11px;color:#64748b;margin-top:2px;text-transform:uppercase;letter-spacing:.3px;font-weight:500}
+.ptv-w .ptv-chs{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:220px}
+.ptv-w .ptv-bdg{display:inline-flex;align-items:center;padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.2px;white-space:nowrap;line-height:1}
+.ptv-w .b-dazn{background:#fb7700}
+.ptv-w .b-sky{background:#0571c1}
+.ptv-w .b-sky-calcio{background:#003d7a}
+.ptv-w .b-now{background:#00b3a4}
+.ptv-w .b-como{background:#7c3aed}
+.ptv-w .b-apple{background:#000000}
+.ptv-w .b-sportitalia{background:#1e40af}
+.ptv-w .b-rai{background:#0ea5e9}
+.ptv-w .b-tv8{background:#f97316}
+.ptv-w .b-lab{background:#475569}
+.ptv-w .b-disney{background:#0c2a5f}
+.ptv-w .b-solocalcio{background:#16a34a}
+.ptv-w .b-onefootball{background:#0a5cd6}
+.ptv-w .b-vivo{background:#0284c7}
+.ptv-w .ptv-empty{display:none;padding:32px 16px;text-align:center;color:#94a3b8;font-size:13px;font-style:italic}
+
+.ptv-w #ptv-d1:checked~.ptv-tabs label[for=ptv-d1],
+.ptv-w #ptv-d2:checked~.ptv-tabs label[for=ptv-d2],
+.ptv-w #ptv-d3:checked~.ptv-tabs label[for=ptv-d3],
+.ptv-w #ptv-d4:checked~.ptv-tabs label[for=ptv-d4],
+.ptv-w #ptv-d5:checked~.ptv-tabs label[for=ptv-d5],
+.ptv-w #ptv-d6:checked~.ptv-tabs label[for=ptv-d6],
+.ptv-w #ptv-d7:checked~.ptv-tabs label[for=ptv-d7]{background:#fff;color:#0f172a;border-color:#e5e7eb;position:relative}
+.ptv-w #ptv-d1:checked~.ptv-tabs label[for=ptv-d1]:after,
+.ptv-w #ptv-d2:checked~.ptv-tabs label[for=ptv-d2]:after,
+.ptv-w #ptv-d3:checked~.ptv-tabs label[for=ptv-d3]:after,
+.ptv-w #ptv-d4:checked~.ptv-tabs label[for=ptv-d4]:after,
+.ptv-w #ptv-d5:checked~.ptv-tabs label[for=ptv-d5]:after,
+.ptv-w #ptv-d6:checked~.ptv-tabs label[for=ptv-d6]:after,
+.ptv-w #ptv-d7:checked~.ptv-tabs label[for=ptv-d7]:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#fff}
+
+.ptv-w #ptv-c-all:checked~.ptv-filt label[for=ptv-c-all],
+.ptv-w #ptv-c-dazn:checked~.ptv-filt label[for=ptv-c-dazn],
+.ptv-w #ptv-c-sky:checked~.ptv-filt label[for=ptv-c-sky],
+.ptv-w #ptv-c-sky-calcio:checked~.ptv-filt label[for=ptv-c-sky-calcio],
+.ptv-w #ptv-c-now:checked~.ptv-filt label[for=ptv-c-now],
+.ptv-w #ptv-c-como:checked~.ptv-filt label[for=ptv-c-como],
+.ptv-w #ptv-c-apple:checked~.ptv-filt label[for=ptv-c-apple],
+.ptv-w #ptv-c-sportitalia:checked~.ptv-filt label[for=ptv-c-sportitalia],
+.ptv-w #ptv-c-rai:checked~.ptv-filt label[for=ptv-c-rai],
+.ptv-w #ptv-c-tv8:checked~.ptv-filt label[for=ptv-c-tv8],
+.ptv-w #ptv-c-lab:checked~.ptv-filt label[for=ptv-c-lab],
+.ptv-w #ptv-c-disney:checked~.ptv-filt label[for=ptv-c-disney],
+.ptv-w #ptv-c-solocalcio:checked~.ptv-filt label[for=ptv-c-solocalcio]{background:#0f172a;color:#fff;border-color:#0f172a}
+
+.ptv-w #ptv-d1:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-1,
+.ptv-w #ptv-d1:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-1.ch-dazn,
+.ptv-w #ptv-d1:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-1.ch-sky,
+.ptv-w #ptv-d1:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-1.ch-sky-calcio,
+.ptv-w #ptv-d1:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-1.ch-now,
+.ptv-w #ptv-d1:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-1.ch-como,
+.ptv-w #ptv-d1:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-1.ch-apple,
+.ptv-w #ptv-d1:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-1.ch-sportitalia,
+.ptv-w #ptv-d1:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-1.ch-rai,
+.ptv-w #ptv-d1:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-1.ch-tv8,
+.ptv-w #ptv-d1:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-1.ch-lab,
+.ptv-w #ptv-d1:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-1.ch-disney,
+.ptv-w #ptv-d1:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-1.ch-solocalcio,
+.ptv-w #ptv-d2:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-2,
+.ptv-w #ptv-d2:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-2.ch-dazn,
+.ptv-w #ptv-d2:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-2.ch-sky,
+.ptv-w #ptv-d2:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-2.ch-sky-calcio,
+.ptv-w #ptv-d2:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-2.ch-now,
+.ptv-w #ptv-d2:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-2.ch-como,
+.ptv-w #ptv-d2:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-2.ch-apple,
+.ptv-w #ptv-d2:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-2.ch-sportitalia,
+.ptv-w #ptv-d2:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-2.ch-rai,
+.ptv-w #ptv-d2:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-2.ch-tv8,
+.ptv-w #ptv-d2:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-2.ch-lab,
+.ptv-w #ptv-d2:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-2.ch-disney,
+.ptv-w #ptv-d2:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-2.ch-solocalcio,
+.ptv-w #ptv-d3:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-3,
+.ptv-w #ptv-d3:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-3.ch-dazn,
+.ptv-w #ptv-d3:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-3.ch-sky,
+.ptv-w #ptv-d3:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-3.ch-sky-calcio,
+.ptv-w #ptv-d3:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-3.ch-now,
+.ptv-w #ptv-d3:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-3.ch-como,
+.ptv-w #ptv-d3:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-3.ch-apple,
+.ptv-w #ptv-d3:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-3.ch-sportitalia,
+.ptv-w #ptv-d3:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-3.ch-rai,
+.ptv-w #ptv-d3:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-3.ch-tv8,
+.ptv-w #ptv-d3:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-3.ch-lab,
+.ptv-w #ptv-d3:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-3.ch-disney,
+.ptv-w #ptv-d3:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-3.ch-solocalcio,
+.ptv-w #ptv-d4:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-4,
+.ptv-w #ptv-d4:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-4.ch-dazn,
+.ptv-w #ptv-d4:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-4.ch-sky,
+.ptv-w #ptv-d4:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-4.ch-sky-calcio,
+.ptv-w #ptv-d4:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-4.ch-now,
+.ptv-w #ptv-d4:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-4.ch-como,
+.ptv-w #ptv-d4:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-4.ch-apple,
+.ptv-w #ptv-d4:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-4.ch-sportitalia,
+.ptv-w #ptv-d4:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-4.ch-rai,
+.ptv-w #ptv-d4:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-4.ch-tv8,
+.ptv-w #ptv-d4:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-4.ch-lab,
+.ptv-w #ptv-d4:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-4.ch-disney,
+.ptv-w #ptv-d4:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-4.ch-solocalcio,
+.ptv-w #ptv-d5:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-5,
+.ptv-w #ptv-d5:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-5.ch-dazn,
+.ptv-w #ptv-d5:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-5.ch-sky,
+.ptv-w #ptv-d5:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-5.ch-sky-calcio,
+.ptv-w #ptv-d5:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-5.ch-now,
+.ptv-w #ptv-d5:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-5.ch-como,
+.ptv-w #ptv-d5:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-5.ch-apple,
+.ptv-w #ptv-d5:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-5.ch-sportitalia,
+.ptv-w #ptv-d5:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-5.ch-rai,
+.ptv-w #ptv-d5:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-5.ch-tv8,
+.ptv-w #ptv-d5:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-5.ch-lab,
+.ptv-w #ptv-d5:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-5.ch-disney,
+.ptv-w #ptv-d5:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-5.ch-solocalcio,
+.ptv-w #ptv-d6:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-6,
+.ptv-w #ptv-d6:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-6.ch-dazn,
+.ptv-w #ptv-d6:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-6.ch-sky,
+.ptv-w #ptv-d6:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-6.ch-sky-calcio,
+.ptv-w #ptv-d6:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-6.ch-now,
+.ptv-w #ptv-d6:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-6.ch-como,
+.ptv-w #ptv-d6:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-6.ch-apple,
+.ptv-w #ptv-d6:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-6.ch-sportitalia,
+.ptv-w #ptv-d6:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-6.ch-rai,
+.ptv-w #ptv-d6:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-6.ch-tv8,
+.ptv-w #ptv-d6:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-6.ch-lab,
+.ptv-w #ptv-d6:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-6.ch-disney,
+.ptv-w #ptv-d6:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-6.ch-solocalcio,
+.ptv-w #ptv-d7:checked~#ptv-c-all:checked~.ptv-body .ptv-row.d-7,
+.ptv-w #ptv-d7:checked~#ptv-c-dazn:checked~.ptv-body .ptv-row.d-7.ch-dazn,
+.ptv-w #ptv-d7:checked~#ptv-c-sky:checked~.ptv-body .ptv-row.d-7.ch-sky,
+.ptv-w #ptv-d7:checked~#ptv-c-sky-calcio:checked~.ptv-body .ptv-row.d-7.ch-sky-calcio,
+.ptv-w #ptv-d7:checked~#ptv-c-now:checked~.ptv-body .ptv-row.d-7.ch-now,
+.ptv-w #ptv-d7:checked~#ptv-c-como:checked~.ptv-body .ptv-row.d-7.ch-como,
+.ptv-w #ptv-d7:checked~#ptv-c-apple:checked~.ptv-body .ptv-row.d-7.ch-apple,
+.ptv-w #ptv-d7:checked~#ptv-c-sportitalia:checked~.ptv-body .ptv-row.d-7.ch-sportitalia,
+.ptv-w #ptv-d7:checked~#ptv-c-rai:checked~.ptv-body .ptv-row.d-7.ch-rai,
+.ptv-w #ptv-d7:checked~#ptv-c-tv8:checked~.ptv-body .ptv-row.d-7.ch-tv8,
+.ptv-w #ptv-d7:checked~#ptv-c-lab:checked~.ptv-body .ptv-row.d-7.ch-lab,
+.ptv-w #ptv-d7:checked~#ptv-c-disney:checked~.ptv-body .ptv-row.d-7.ch-disney,
+.ptv-w #ptv-d7:checked~#ptv-c-solocalcio:checked~.ptv-body .ptv-row.d-7.ch-solocalcio{display:flex}
+
+
+
+@media (max-width:520px){
+.ptv-w .ptv-tabs label{font-size:12px;padding:8px 4px;min-width:60px}
+.ptv-w .ptv-tabs label small{font-size:10px}
+.ptv-w .ptv-row{padding:12px;gap:10px;flex-wrap:wrap}
+.ptv-w .ptv-time{flex:0 0 50px;font-size:14px}
+.ptv-w .ptv-match-name{font-size:13px}
+.ptv-w .ptv-chs{max-width:100%;justify-content:flex-start;flex-basis:100%;padding-left:60px}
+.ptv-w .ptv-bdg{font-size:10px;padding:3px 7px}
+}
+</style>
+<input type="radio" name="ptv-day" id="ptv-d1" class="ptv-rd" checked>
+<input type="radio" name="ptv-day" id="ptv-d2" class="ptv-rd">
+<input type="radio" name="ptv-day" id="ptv-d3" class="ptv-rd">
+<input type="radio" name="ptv-day" id="ptv-d4" class="ptv-rd">
+<input type="radio" name="ptv-day" id="ptv-d5" class="ptv-rd">
+<input type="radio" name="ptv-day" id="ptv-d6" class="ptv-rd">
+<input type="radio" name="ptv-day" id="ptv-d7" class="ptv-rd">
+<input type="radio" name="ptv-ch" id="ptv-c-all" class="ptv-rc" checked>
+<input type="radio" name="ptv-ch" id="ptv-c-dazn" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-sky" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-sky-calcio" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-now" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-como" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-apple" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-sportitalia" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-rai" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-tv8" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-lab" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-disney" class="ptv-rc">
+<input type="radio" name="ptv-ch" id="ptv-c-solocalcio" class="ptv-rc">
+<div class="ptv-tabs">
+<label for="ptv-d1">Lun<small>18 Mag</small></label>
+<label for="ptv-d2">Mar<small>19 Mag</small></label>
+<label for="ptv-d3">Mer<small>20 Mag</small></label>
+<label for="ptv-d4">Gio<small>21 Mag</small></label>
+<label for="ptv-d5">Ven<small>22 Mag</small></label>
+<label for="ptv-d6">Sab<small>23 Mag</small></label>
+<label for="ptv-d7">Dom<small>24 Mag</small></label>
+</div>
+<div class="ptv-filt">
+<label for="ptv-c-all">Tutte</label>
+<label for="ptv-c-dazn">DAZN</label>
+<label for="ptv-c-sky">Sky Sport</label>
+<label for="ptv-c-sky-calcio">Sky Sport Calcio</label>
+<label for="ptv-c-now">NOW</label>
+<label for="ptv-c-como">Como TV</label>
+<label for="ptv-c-apple">Apple TV</label>
+<label for="ptv-c-sportitalia">Sportitalia</label>
+<label for="ptv-c-rai">Rai</label>
+<label for="ptv-c-tv8">TV8</label>
+<label for="ptv-c-lab">LAB Channel</label>
+<label for="ptv-c-disney">Disney+</label>
+<label for="ptv-c-solocalcio">Solocalcio</label>
+</div>
+<div class="ptv-body">
+<div class="ptv-row d-1 ch-apple"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Inter Miami - Portland Timbers</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-1 ch-apple"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Nashville - Los Angeles FC</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-1 ch-now ch-sky ch-sky-calcio"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Arsenal - Burnley</span><span class="ptv-comp">Premier League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky-calcio">Sky Sport Calcio</span><span class="ptv-bdg b-sky">Sky Sport Uno</span><span class="ptv-bdg b-sky">Sky Sport 4K</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-2 "><div class="ptv-time">17:00</div><div class="ptv-match"><span class="ptv-match-name">Italia - Serbia U15</span><span class="ptv-comp">Amichevole</span></div><div class="ptv-chs"><span class="ptv-bdg b-vivo">Vivo Azzurro</span></div></div>
+<div class="ptv-row d-2 ch-dazn ch-lab"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Monza - Juve Stabia</span><span class="ptv-comp">Serie B</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span><span class="ptv-bdg b-lab">LAB Channel</span></div></div>
+<div class="ptv-row d-2 ch-now ch-sky"><div class="ptv-time">20:30</div><div class="ptv-match"><span class="ptv-match-name">Bournemouth - Manchester City</span><span class="ptv-comp">Premier League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport Uno</span><span class="ptv-bdg b-sky">Sky Sport 4K</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-2 ch-now ch-sky-calcio"><div class="ptv-time">21:15</div><div class="ptv-match"><span class="ptv-match-name">Chelsea - Tottenham</span><span class="ptv-comp">Premier League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky-calcio">Sky Sport Calcio</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Coquimbo - Tolima</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Fluminense - Bolivar</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Rosario Central - Universidad Central</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Audax Italiano - Barracas Central</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Montevideo City Torque - Deportivo Riestra</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Always Ready - Mirassol</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Santa Fe - Platense</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Boca Juniors - Cruzeiro</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">San Paolo - Millonarios</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">Independiente del Valle - Libertad</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">America Cali - Tigre</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">Deportivo Cuenca - Recoleta</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-dazn ch-lab"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Palermo - Catanzaro</span><span class="ptv-comp">Playoff Serie B</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span><span class="ptv-bdg b-lab">LAB Channel</span></div></div>
+<div class="ptv-row d-3 ch-now ch-sky"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Union Brescia - Casarano</span><span class="ptv-comp">Playoff Serie C</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-3 ch-now ch-sky"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Ascoli - Potenza</span><span class="ptv-comp">Playoff Serie C</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-3 ch-como ch-sportitalia"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Al Khaleej - Al Ahli</span><span class="ptv-comp">Saudi League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-3 ch-now ch-sky"><div class="ptv-time">20:30</div><div class="ptv-match"><span class="ptv-match-name">Catania - Lecco</span><span class="ptv-comp">Playoff Serie C</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-3 ch-now ch-rai ch-sky"><div class="ptv-time">20:45</div><div class="ptv-match"><span class="ptv-match-name">Ravenna - Salernitana</span><span class="ptv-comp">Playoff Serie C</span></div><div class="ptv-chs"><span class="ptv-bdg b-rai">Rai Sport</span><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-3 ch-now ch-sky"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Friburgo - Aston Villa</span><span class="ptv-comp">UEFA Europa League Final</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-sky">Sky Sport Uno</span><span class="ptv-bdg b-sky">Sky Sport 4K</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Nacional - Universitario</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Boston River - O&#x27;Higgins</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Olimpia - Vasco da Gama</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Santos - San Lorenzo</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Gremio - Palestino</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Independiente Petrolero - Botafogo</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Flamengo - Estudiantes</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">LDU Quito - Lanus</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Palmeiras - Cerro Porteño</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">River Plate - Bragantino</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">Cusco - Independiente Medellin</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">Junior - Sporting Cristal</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-sportitalia"><div class="ptv-time">15:00</div><div class="ptv-match"><span class="ptv-match-name">Roma - Bologna</span><span class="ptv-comp">Playoff Primavera</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span></div></div>
+<div class="ptv-row d-4 ch-sportitalia"><div class="ptv-time">18:00</div><div class="ptv-match"><span class="ptv-match-name">Primavera 1</span><span class="ptv-comp">Primavera 1</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span></div></div>
+<div class="ptv-row d-4 ch-como ch-sportitalia"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Al Nassr - Damac</span><span class="ptv-comp">Saudi League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-como ch-solocalcio"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Al Fayha - Al Hilal</span><span class="ptv-comp">Saudi League</span></div><div class="ptv-chs"><span class="ptv-bdg b-solocalcio">Solocalcio</span><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-4 ch-sportitalia"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Diretta Gol Saudi League</span><span class="ptv-comp">Saudi League</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">La Guaira - Independiente Rivadavia</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Atletico Mineiro - Cienciano</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">00:00</div><div class="ptv-match"><span class="ptv-match-name">Puerto Cabello - Juventud</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">02:00</div><div class="ptv-match"><span class="ptv-match-name">Racing - Caracas</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Peñarol - Corinthians</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Universidad Catolica - Barcelona</span><span class="ptv-comp">Copa Libertadores</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Blooming - Carabobo</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">04:00</div><div class="ptv-match"><span class="ptv-match-name">Macará - Alianza Atletico</span><span class="ptv-comp">Copa Sudamericana</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-5 ch-sportitalia"><div class="ptv-time">15:00</div><div class="ptv-match"><span class="ptv-match-name">Cesena - Inter</span><span class="ptv-comp">Playoff Primavera</span></div><div class="ptv-chs"><span class="ptv-bdg b-sportitalia">Sportitalia</span></div></div>
+<div class="ptv-row d-5 ch-dazn ch-lab"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Sudtirol - Bari</span><span class="ptv-comp">Playout Serie B</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span><span class="ptv-bdg b-lab">LAB Channel</span></div></div>
+<div class="ptv-row d-5 ch-como"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Lens - Nizza</span><span class="ptv-comp">Coppa di Francia Final</span></div><div class="ptv-chs"><span class="ptv-bdg b-como">Como TV</span></div></div>
+<div class="ptv-row d-6 ch-disney"><div class="ptv-time">18:00</div><div class="ptv-match"><span class="ptv-match-name">Barcellona - Lione</span><span class="ptv-comp">Champions League Femminile Final</span></div><div class="ptv-chs"><span class="ptv-bdg b-disney">Disney+</span></div></div>
+<div class="ptv-row d-6 ch-now ch-sky"><div class="ptv-time">20:00</div><div class="ptv-match"><span class="ptv-match-name">Bayern - Stoccarda</span><span class="ptv-comp">Coppa di Germania Final</span></div><div class="ptv-chs"><span class="ptv-bdg b-sky">Sky Sport</span><span class="ptv-bdg b-now">NOW</span></div></div>
+<div class="ptv-row d-6 ch-apple"><div class="ptv-time">20:30</div><div class="ptv-match"><span class="ptv-match-name">St. Louis City - Austin</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Alaves - Rayo Vallecano</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Betis - Levante</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Celta - Siviglia</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Espanyol - Real Sociedad</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Getafe - Osasuna</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Girona - Elche</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Maiorca - Oviedo</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Real Madrid - Athletic</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Valencia - Barcellona</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-dazn"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Villarreal - Atletico Madrid</span><span class="ptv-comp">La Liga</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span></div></div>
+<div class="ptv-row d-6 ch-apple"><div class="ptv-time">22:30</div><div class="ptv-match"><span class="ptv-match-name">Minnesota United - Real Salt Lake</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">01:30</div><div class="ptv-match"><span class="ptv-match-name">Charlotte - New England Revolution</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">01:30</div><div class="ptv-match"><span class="ptv-match-name">Cincinnati - Orlando City</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">01:30</div><div class="ptv-match"><span class="ptv-match-name">DC United - Montreal Impact</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Chicago Fire - Toronto</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Nashville - New York City</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">02:30</div><div class="ptv-match"><span class="ptv-match-name">Sporting KC - New York RB</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">03:30</div><div class="ptv-match"><span class="ptv-match-name">Colorado Rapids - Dallas</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">03:30</div><div class="ptv-match"><span class="ptv-match-name">Portland Timbers - San Jose Earthquakes</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">03:30</div><div class="ptv-match"><span class="ptv-match-name">San Diego - Vancouver Whitecaps</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">04:30</div><div class="ptv-match"><span class="ptv-match-name">LA Galaxy - Houston Dynamo</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+<div class="ptv-row d-7 ch-rai"><div class="ptv-time">18:00</div><div class="ptv-match"><span class="ptv-match-name">Juventus - Roma</span><span class="ptv-comp">Coppa Italia Femminile</span></div><div class="ptv-chs"><span class="ptv-bdg b-rai">Rai 2</span></div></div>
+<div class="ptv-row d-7 ch-tv8"><div class="ptv-time">20:30</div><div class="ptv-match"><span class="ptv-match-name">Serie B</span><span class="ptv-comp">Serie B</span></div><div class="ptv-chs"><span class="ptv-bdg b-tv8">TV8</span></div></div>
+<div class="ptv-row d-7 ch-dazn ch-lab"><div class="ptv-time">21:00</div><div class="ptv-match"><span class="ptv-match-name">Playoff Serie B Final (Andata)</span><span class="ptv-comp">Serie B</span></div><div class="ptv-chs"><span class="ptv-bdg b-dazn">DAZN</span><span class="ptv-bdg b-lab">LAB Channel</span></div></div>
+<div class="ptv-row d-7 ch-apple"><div class="ptv-time">23:00</div><div class="ptv-match"><span class="ptv-match-name">Columbus Crew - Atlanta United</span><span class="ptv-comp">MLS</span></div><div class="ptv-chs"><span class="ptv-bdg b-apple">Apple TV</span></div></div>
+
+</div>
+</div>
