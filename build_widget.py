@@ -7,8 +7,7 @@ import html as html_lib
 FILTERS = [
     ('all', 'Tutte'),
     ('dazn', 'DAZN'),
-    ('sky', 'Sky Sport'),
-    ('sky-calcio', 'Sky Sport Calcio'),
+    ('sky', 'Sky'),
     ('now', 'NOW'),
     ('como', 'Como TV'),
     ('apple', 'Apple TV'),
@@ -24,12 +23,14 @@ FILTERS = [
 # (display_name, badge_class, filter_slug)
 CHANNEL_MAP = {
     'DAZN':              ('DAZN',            'b-dazn',        'dazn'),
-    'Sky Sport':         ('Sky Sport',       'b-sky',         'sky'),
-    'Sky Sport Uno':     ('Sky Sport Uno',   'b-sky',         'sky'),
-    'Sky Sport 1':       ('Sky Sport Uno',   'b-sky',         'sky'),
-    'Sky Sport 4K':      ('Sky Sport 4K',    'b-sky',         'sky'),
-    'Sky':               ('Sky Sport',       'b-sky',         'sky'),
-    'Sky Sport Calcio':  ('Sky Sport Calcio','b-sky-calcio',  'sky-calcio'),
+    'Sky Sport':         ('Sky',             'b-sky',         'sky'),
+    'Sky Sport Uno':     ('Sky',             'b-sky',         'sky'),
+    'Sky Sport 1':       ('Sky',             'b-sky',         'sky'),
+    'Sky Sport 2':       ('Sky',             'b-sky',         'sky'),
+    'Sky Sport 3':       ('Sky',             'b-sky',         'sky'),
+    'Sky Sport 4K':      ('Sky',             'b-sky',         'sky'),
+    'Sky':               ('Sky',             'b-sky',         'sky'),
+    'Sky Sport Calcio':  ('Sky',             'b-sky',         'sky'),
     'NOW':               ('NOW',             'b-now',         'now'),
     'Como TV':           ('Como TV',         'b-como',        'como'),
     'Apple TV':          ('Apple TV',        'b-apple',       'apple'),
@@ -300,7 +301,6 @@ html_out = f'''<div class="ptv-w">
 .ptv-w .ptv-bdg{{display:inline-flex;align-items:center;padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.2px;white-space:nowrap;line-height:1}}
 .ptv-w .b-dazn{{background:#fb7700}}
 .ptv-w .b-sky{{background:#0571c1}}
-.ptv-w .b-sky-calcio{{background:#003d7a}}
 .ptv-w .b-now{{background:#00b3a4}}
 .ptv-w .b-como{{background:#7c3aed}}
 .ptv-w .b-apple{{background:#000000}}
